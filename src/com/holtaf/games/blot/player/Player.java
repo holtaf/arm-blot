@@ -7,9 +7,10 @@ import com.holtaf.games.blot.card.Card;
 
 public class Player {
 	private final List<Card> cardList = new ArrayList<Card>();
+	private final String name;
 	
-	public Player() {
-		
+	public Player(String name) {
+		this.name = name;
 	}
 	
 	public void setCards(List<Card> cards) {
@@ -23,5 +24,18 @@ public class Player {
 		} else {
 			return cardList.get(cardIndex);
 		}
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getCardsAsString() {
+		StringBuilder builder = new StringBuilder();
+		for (Card card : cardList) {
+			builder.append(card.toString() + " ");
+		}
+		
+		return builder.toString();
 	}
 }
