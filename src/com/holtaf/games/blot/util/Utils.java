@@ -1,133 +1,133 @@
 package com.holtaf.games.blot.util;
 
+import com.holtaf.games.blot.R;
+import com.holtaf.games.blot.card.Card;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import com.holtaf.games.blot.R;
-import com.holtaf.games.blot.card.Card;
-
 public class Utils {
-	private Utils() {
-	}
+    private static Random random = new Random(System.currentTimeMillis());
 
-	public static List<List<Card>> getShuffledCards() {
-		List<Card> deck = Card.getDeck();
-		Collections.shuffle(deck, new Random(System.currentTimeMillis()));
+    private Utils() {
+    }
 
-		ArrayList<List<Card>> result = new ArrayList<List<Card>>();
+    public static List<List<Card>> getShuffledCards() {
+        List<Card> deck = Card.getDeck();
+        Collections.shuffle(deck, new Random(System.currentTimeMillis()));
 
-		for (int i = 0; i < 4; ++i) {
-			result.add(deck.subList(i * 8, (i + 1) * 8));
-		}
+        ArrayList<List<Card>> result = new ArrayList<List<Card>>();
 
-		return result;
-	}
+        for (int i = 0; i < 4; ++i) {
+            result.add(deck.subList(i * 8, (i + 1) * 8));
+        }
 
-	public static List<Integer> getRandomSequence(int n) {
-		List<Integer> result = new ArrayList<Integer>();
-		for (int i = 0; i <= n; ++i) {
-			result.add(i);
-		}
+        return result;
+    }
 
-		Collections.shuffle(result, new Random(System.currentTimeMillis()));
+    public static List<Integer> getRandomSequence(int n) {
+        List<Integer> result = new ArrayList<Integer>();
+        for (int i = 0; i <= n; ++i) {
+            result.add(i);
+        }
 
-		return result;
-	}
-	
-	public static int getResourceForCard(Card card) {
-		switch (card.suit) {
-		case CLUB:
-			switch (card.rank) {
-			case ACE:
-				return R.raw.clubs_ace;
-			case KING:
-				return R.raw.clubs_king;
-			case QUEEN:
-				return R.raw.clubs_queen;
-			case JACK:
-				return R.raw.clubs_jack;
-			case TEN:
-				return R.raw.clubs_10;
-			case NINE:
-				return R.raw.clubs_9;
-			case EIGHT:
-				return R.raw.clubs_8;
-			case SEVEN:
-				return R.raw.clubs_7;
-			}
-			
-		case DIAMOND:
-			switch (card.rank) {
-			case ACE:
-				return R.raw.diamonds_ace;
-			case KING:
-				return R.raw.diamonds_king;
-			case QUEEN:
-				return R.raw.diamonds_queen;
-			case JACK:
-				return R.raw.diamonds_jack;
-			case TEN:
-				return R.raw.diamonds_10;
-			case NINE:
-				return R.raw.diamonds_9;
-			case EIGHT:
-				return R.raw.diamonds_8;
-			case SEVEN:
-				return R.raw.diamonds_7;
-			}
-			
-		case HEART:
-			switch (card.rank) {
-			case ACE:
-				return R.raw.hearts_ace;
-			case KING:
-				return R.raw.hearts_king;
-			case QUEEN:
-				return R.raw.hearts_queen;
-			case JACK:
-				return R.raw.hearts_jack;
-			case TEN:
-				return R.raw.hearts_10;
-			case NINE:
-				return R.raw.hearts_9;
-			case EIGHT:
-				return R.raw.hearts_8;
-			case SEVEN:
-				return R.raw.hearts_7;
-			}
-			
-		case SPADE:
-			switch (card.rank) {
-			case ACE:
-				return R.raw.spades_ace;
-			case KING:
-				return R.raw.spades_king;
-			case QUEEN:
-				return R.raw.spades_queen;
-			case JACK:
-				return R.raw.spades_jack;
-			case TEN:
-				return R.raw.spades_10;
-			case NINE:
-				return R.raw.spades_9;
-			case EIGHT:
-				return R.raw.spades_8;
-			case SEVEN:
-				return R.raw.spades_7;
-			}
-		}
-		
-		return 0;
-	}
+        Collections.shuffle(result, new Random(System.currentTimeMillis()));
 
-	private static Random random = new Random(System.currentTimeMillis());
-	
-	/**
-	 * Returns pseudo-random number in range [0, n)
-	 * */
-	public static int getRandomNumber(int n) {
-		return random.nextInt(n);
-	}
+        return result;
+    }
+
+    public static int getResourceForCard(Card card) {
+        switch (card.suit) {
+            case CLUB:
+                switch (card.rank) {
+                    case ACE:
+                        return R.drawable.ace_of_clubs;
+                    case KING:
+                        return R.drawable.king_of_clubs;
+                    case QUEEN:
+                        return R.drawable.queen_of_clubs;
+                    case JACK:
+                        return R.drawable.jack_of_clubs;
+                    case TEN:
+                        return R.drawable.ten_of_clubs;
+                    case NINE:
+                        return R.drawable.nine_of_clubs;
+                    case EIGHT:
+                        return R.drawable.eight_of_clubs;
+                    case SEVEN:
+                        return R.drawable.seven_of_clubs;
+                }
+
+            case DIAMOND:
+                switch (card.rank) {
+                    case ACE:
+                        return R.drawable.ace_of_diamonds;
+                    case KING:
+                        return R.drawable.king_of_diamonds;
+                    case QUEEN:
+                        return R.drawable.queen_of_diamonds;
+                    case JACK:
+                        return R.drawable.jack_of_diamonds;
+                    case TEN:
+                        return R.drawable.ten_of_diamonds;
+                    case NINE:
+                        return R.drawable.nine_of_diamonds;
+                    case EIGHT:
+                        return R.drawable.eight_of_diamonds;
+                    case SEVEN:
+                        return R.drawable.seven_of_diamonds;
+                }
+
+            case HEART:
+                switch (card.rank) {
+                    case ACE:
+                        return R.drawable.ace_of_hearts;
+                    case KING:
+                        return R.drawable.king_of_hearts;
+                    case QUEEN:
+                        return R.drawable.queen_of_hearts;
+                    case JACK:
+                        return R.drawable.jack_of_hearts;
+                    case TEN:
+                        return R.drawable.ten_of_hearts;
+                    case NINE:
+                        return R.drawable.nine_of_hearts;
+                    case EIGHT:
+                        return R.drawable.eight_of_hearts;
+                    case SEVEN:
+                        return R.drawable.seven_of_hearts;
+                }
+
+            case SPADE:
+                switch (card.rank) {
+                    case ACE:
+                        return R.drawable.ace_of_spades;
+                    case KING:
+                        return R.drawable.king_of_spades;
+                    case QUEEN:
+                        return R.drawable.queen_of_spades;
+                    case JACK:
+                        return R.drawable.jack_of_spades;
+                    case TEN:
+                        return R.drawable.ten_of_spades;
+                    case NINE:
+                        return R.drawable.nine_of_spades;
+                    case EIGHT:
+                        return R.drawable.eight_of_spades;
+                    case SEVEN:
+                        return R.drawable.seven_of_spades;
+                }
+        }
+
+        return 0;
+    }
+
+    /**
+     * Returns pseudo-random number in range [0, n)
+     */
+    public static int getRandomNumber(int n) {
+        return random.nextInt(n);
+    }
 }

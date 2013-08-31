@@ -17,6 +17,10 @@ public class Player {
 		cardList.clear();
 		cardList.addAll(cards);
 	}
+
+    public List<? extends  Card> getCards() {
+        return cardList;
+    }
 	
 	public Card playCard(int cardIndex) {
 		if (cardIndex >= cardList.size()) {
@@ -29,7 +33,10 @@ public class Player {
 	public String getName() {
 		return name;
 	}
-	
+
+    /**
+     * @hide
+     * */
 	public String getCardsAsString() {
 		StringBuilder builder = new StringBuilder();
 		for (Card card : cardList) {
