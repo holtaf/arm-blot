@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tableMarginLeft">24dp</dimen>
+    <dimen name="tableMarginRight">@dimen/tableMarginLeft</dimen>
+    <dimen name="tableMarginTop">@dimen/tableMarginLeft</dimen>
+    <dimen name="tableMarginBottom">@dimen/tableMarginLeft</dimen>
+
+    <dimen name="maxCardWidth">64dp</dimen>
+    <dimen name="maxCardHeight">94dp</dimen>
+
+    <dimen name="cardMargin">2dp</dimen>
+
+    <item type="dimen" format="float" name="cardAspectRatio">0.68</item>
+</resources>

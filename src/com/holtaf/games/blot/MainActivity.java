@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.holtaf.games.blot.game.GameController;
 import com.holtaf.games.blot.player.Player;
+import com.holtaf.games.blot.view.Table;
 
 public class MainActivity extends Activity {
 	/** Called when the activity is first created. */
@@ -16,7 +17,11 @@ public class MainActivity extends Activity {
 		
 		GameController controller = new GameController();
 		controller.dealCards();
-		
+
+        Table table = (Table) findViewById(R.id.table);
+        table.setGameController(controller);
+        table.loadResources(controller.getCardList());
+
 //		StringBuilder builder = new StringBuilder();
 //		
 //		for (Player player : controller.getPlayerList()) {

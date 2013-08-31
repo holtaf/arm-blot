@@ -35,6 +35,15 @@ public class GameController {
 			player.setCards(shuffledCards.get(playerIndex++));
 		}
 	}
+
+    public List<Card> getCardList() {
+        List<Card> result = new LinkedList<Card>();
+        for (Player player : playerList) {
+            result.addAll(player.getCards());
+        }
+
+        return result;
+    }
 	
 	public void startContract() {
 		currentContract = new Contract(this, new ValueListener<Bid>() {
