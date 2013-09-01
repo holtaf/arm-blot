@@ -89,6 +89,11 @@ public class Table extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        // 7 * (cardWidth + delta) + cardWidth + margins = screenWidth
+        // delta = (screenWidth - margins - 8 * cardWidth) / 7
+
+        final float horizontalDelta = (getWidth() - tableMarginLeft - tableMarginRight - 8 * origCardRect.width()) / 7;
+        final float verticalDelta = (getHeight() - 2 * tableMarginBottom - 2 * tableMarginTop - 2 * origCardRect.height() - 8 * origCardRect.width()) / 7;
 
         // player 0 (south)
         int index = 0;
@@ -98,12 +103,51 @@ public class Table extends View {
         for (Card card : gameController.getPlayerByIndex(0).getCards()) {
             CardDrawable drawable = cardTextures.get(card);
             drawable.setBounds(tmpCardRect);
-//            canvas.save();
-//            canvas.rotate((index - 4) * 5f, getWidth() / 2, getHeight() + origCardRect.height());
+            drawable.drawOnCanvas(canvas);
+
+            tmpCardRect.offset(horizontalDelta + origCardRect.width(), 0);
+            index++;
+        }
+
+        tmpCardRect.set(origCardRect);
+        tmpCardRect.offsetTo(tableMarginLeft, 2 * tableMarginTop);
+
+        for (Card card : gameController.getPlayerByIndex(1).getCards()) {
+            CardDrawable drawable = cardTextures.get(card);
+            drawable.setBounds(tmpCardRect);
+            canvas.save();
+            canvas.rotate(90, tmpCardRect.left, tmpCardRect.bottom);
             drawable.drawOnCanvas(canvas);
             canvas.restore();
 
-            tmpCardRect.offset(origCardRect.width() * cardVisibleArea, 0);
+            tmpCardRect.offset(0, verticalDelta + origCardRect.width());
+            index++;
+        }
+
+        tmpCardRect.set(origCardRect);
+        tmpCardRect.offsetTo(tableMarginLeft, tableMarginTop);
+
+        for (Card card : gameController.getPlayerByIndex(2).getCards()) {
+            CardDrawable drawable = cardTextures.get(card);
+            drawable.setBounds(tmpCardRect);
+            drawable.drawOnCanvas(canvas);
+
+            tmpCardRect.offset(horizontalDelta + origCardRect.width(), 0);
+            index++;
+        }
+
+        tmpCardRect.set(origCardRect);
+        tmpCardRect.offsetTo(getWidth() - tableMarginLeft - origCardRect.width(), 2 * tableMarginTop);
+
+        for (Card card : gameController.getPlayerByIndex(3).getCards()) {
+            CardDrawable drawable = cardTextures.get(card);
+            drawable.setBounds(tmpCardRect);
+            canvas.save();
+            canvas.rotate(-90, tmpCardRect.right, tmpCardRect.bottom);
+            drawable.drawOnCanvas(canvas);
+            canvas.restore();
+
+            tmpCardRect.offset(0, verticalDelta + origCardRect.width());
             index++;
         }
     }

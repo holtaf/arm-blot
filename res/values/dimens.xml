@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="tableMarginLeft">24dp</dimen>
+    <dimen name="tableMarginLeft">8dp</dimen>
     <dimen name="tableMarginRight">@dimen/tableMarginLeft</dimen>
     <dimen name="tableMarginTop">@dimen/tableMarginLeft</dimen>
     <dimen name="tableMarginBottom">@dimen/tableMarginLeft</dimen>

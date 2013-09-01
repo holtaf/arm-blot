@@ -18,7 +18,7 @@ public class Player {
 		cardList.addAll(cards);
 	}
 
-    public List<? extends  Card> getCards() {
+    public List<Card> getCards() {
         return cardList;
     }
 	

@@ -2,9 +2,12 @@ package com.holtaf.games.blot.util;
 
 import com.holtaf.games.blot.R;
 import com.holtaf.games.blot.card.Card;
+import com.holtaf.games.blot.card.Rank;
+import com.holtaf.games.blot.card.Suit;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -40,7 +43,7 @@ public class Utils {
 
     public static int getResourceForCard(Card card) {
         switch (card.suit) {
-            case CLUB:
+            case CLUBS:
                 switch (card.rank) {
                     case ACE:
                         return R.drawable.ace_of_clubs;
@@ -60,7 +63,7 @@ public class Utils {
                         return R.drawable.seven_of_clubs;
                 }
 
-            case DIAMOND:
+            case DIAMONDS:
                 switch (card.rank) {
                     case ACE:
                         return R.drawable.ace_of_diamonds;
@@ -80,7 +83,7 @@ public class Utils {
                         return R.drawable.seven_of_diamonds;
                 }
 
-            case HEART:
+            case HEARTS:
                 switch (card.rank) {
                     case ACE:
                         return R.drawable.ace_of_hearts;
@@ -100,7 +103,7 @@ public class Utils {
                         return R.drawable.seven_of_hearts;
                 }
 
-            case SPADE:
+            case SPADES:
                 switch (card.rank) {
                     case ACE:
                         return R.drawable.ace_of_spades;
@@ -129,5 +132,69 @@ public class Utils {
      */
     public static int getRandomNumber(int n) {
         return random.nextInt(n);
+    }
+
+    public static void sortCardsBySuit(List<Card> cards) {
+        List<Card> clubs = new ArrayList<Card>();
+        List<Card> diamonds = new ArrayList<Card>();
+        List<Card> hearts = new ArrayList<Card>();
+        List<Card> spades = new ArrayList<Card>();
+
+        for (Card card : cards) {
+            switch (card.suit) {
+                case CLUBS:
+                    clubs.add(card);
+                    break;
+                case DIAMONDS:
+                    diamonds.add(card);
+                    break;
+                case HEARTS:
+                    hearts.add(card);
+                    break;
+                case SPADES:
+                    spades.add(card);
+                    break;
+            }
+        }
+
+        Collections.sort(clubs, cardValueComparatorForTrump);
+        Collections.sort(diamonds, cardValueComparatorForTrump);
+        Collections.sort(hearts, cardValueComparatorForTrump);
+        Collections.sort(spades, cardValueComparatorForTrump);
+
+        cards.clear();
+
+        cards.addAll(clubs);
+        cards.addAll(diamonds);
+        cards.addAll(hearts);
+        cards.addAll(spades);
+    }
+
+    private static final Comparator<Card> cardValueComparatorForTrump = new Comparator<Card>() {
+        @Override
+        public int compare(Card card, Card card2) {
+            return card.rank.getValueForNonTrump() - card2.rank.getValueForNonTrump();
+        }
+    };
+
+    public static List<Card> getCardsForSuit(List<Card> cards, Suit suit)  {
+        ArrayList<Card> result = new ArrayList<Card>(8);
+
+        for (Card card : cards) {
+            if (card.suit == suit)
+                result.add(card);
+        }
+
+        return result;
+    }
+
+    public static boolean searchForCard(List<Card> cardList, Suit suit, Rank rank) {
+        for (Card c : cardList) {
+            if (c.rank == rank && c.suit == suit) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

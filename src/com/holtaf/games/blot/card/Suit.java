@@ -1,23 +1,23 @@
 package com.holtaf.games.blot.card;
 
 public enum Suit {
-	SPADE {
+	SPADES {
 		@Override
 		public String toString() {
 			return "♠";
 		}
-	}, HEART {
+	}, HEARTS {
 		@Override
 		public String toString() {
 			return "♥";
 		}
-	}, DIAMOND {
+	}, DIAMONDS {
 		@Override
 		public String toString() {
 			return "♦";
 		}
 
-	}, CLUB {
+	}, CLUBS {
 		@Override
 		public String toString() {
 			return "♣";

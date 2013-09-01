@@ -33,6 +33,7 @@ public class GameController {
 		int playerIndex = 0;
 		for (Player player : playerList) {
 			player.setCards(shuffledCards.get(playerIndex++));
+            Utils.sortCardsBySuit(player.getCards());
 		}
 	}
 
